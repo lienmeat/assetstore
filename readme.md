@@ -1,4 +1,4 @@
-#Asset/file cloud storage api
+# Asset/file cloud storage api
 
 Technology used:
 Golang
@@ -11,7 +11,7 @@ I decided to implement token-based access as my additional requirement.
 I also attempted to handle orchestration via terraform, got a long way in, and had an issue with my ELB (I think) not routing properly
 and decided to focus on getting it deployed manually on a new cluster, and focusing on documentation instead.
 
-###Building and running local
+### Building and running local
 
 Note: You'll need go 11.1.x or newer to use the following instructions. You also will need to be logged into the
  aws account via aws cli, and set up a dynamodb table with string fields PK ObjID and SK ObjSort, and an s3 bucket.  
@@ -30,7 +30,7 @@ Accessing the hosted version:
 
 Project is currently hosted at ```http://lienmeat-lb-1721212180.us-west-2.elb.amazonaws.com```
 
-###Endpoints:
+### Endpoints:
 
 To add an asset/file:
 
@@ -47,7 +47,7 @@ Where the request body is the file data.
  'http://lienmeat-lb-1721212180.us-west-2.elb.amazonaws.com/asset/something.txt?token=1&expiry=200'
 ```
  
-####or, multipart/form-encoded:
+or, multipart/form-encoded:
 POST /asset
 
 ```curl -i -X POST \
@@ -58,7 +58,7 @@ POST /asset
  'http://lienmeat-lb-1721212180.us-west-2.elb.amazonaws.com/asset'
 ```
 
-####Example response, with token generated:
+#### Example response, with token generated:
 
 ```
 {
@@ -95,7 +95,7 @@ GET /asset-token/{token}
 You will get a HTTP 204 if either the resource doesn't exist or the token is expired, or a 200 & file download otherwise.
 
 
-##Technical Decisions:
+## Technical Decisions:
 
  I used aws S3 for the asset/file data storage, and dynamodb to keep track of metadata and tokens.
  
