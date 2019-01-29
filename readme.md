@@ -41,7 +41,8 @@ expiry = # of minutes the token is valid from the request time
 POST /asset/:assetname?token=1&expiry=20
 Where the request body is the file data.
 
-```curl -i -X POST \
+```
+curl -i -X POST \
    -H "Content-Type:text/csv" \
    -T "./something.txt" \
  'http://lienmeat-lb-1721212180.us-west-2.elb.amazonaws.com/asset/something.txt?token=1&expiry=200'
@@ -50,7 +51,8 @@ Where the request body is the file data.
 or, multipart/form-encoded:
 POST /asset
 
-```curl -i -X POST \
+```
+curl -i -X POST \
    -H "Content-Type:multipart/form-data" \
    -F "token=1" \
    -F "expiry=20" \
@@ -88,7 +90,8 @@ curl -i -X GET \
 
 GET /asset-token/{token}
 
-```curl -i -X GET \
+```
+curl -i -X GET \
  'http://lienmeat-lb-1721212180.us-west-2.elb.amazonaws.com/asset-token/405ae415-3c44-487c-8024-4294f2d4c680'
 ```
 
